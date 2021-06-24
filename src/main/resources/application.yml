@@ -1,0 +1,23 @@
+spring:
+  application.name: cart-service
+  sleuth:
+    enabled: true
+
+logging.level:
+  root: INFO
+
+server:
+  port: 8899
+
+management:
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+    restart:
+      enabled: true
+
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics

@@ -1,0 +1,201 @@
+{
+	"info": {
+		"_postman_id": "d5e9e1e8-dabd-45d9-a60c-892ba8172182",
+		"name": "Cart API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Cart",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"tests[\"Status code \" + responseCode.code] = responseCode.code === 200 || responseCode.code === 201;\r",
+							"var data = JSON.parse(responseBody);\r",
+							"if(data.id){\r",
+							"    postman.setEnvironmentVariable(\"cartId\", data.id); \r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"createCart\",\r\n    \"lineItems\": [\r\n        {\r\n            \"skuCode\": \"16527-12\",\r\n            \"quantity\": 2\r\n        },\r\n        {\r\n            \"skuCode\": \"5287-212398420628\",\r\n            \"quantity\": 10\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8899/api/v1/carts/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8899",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Cart",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8899/api/v1/carts/{{cartId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8899",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"{{cartId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add Line Item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"addLineItem\",\r\n    \"lineItems\": [\r\n        {\r\n            \"skuCode\": \"16102-212398419920\",\r\n            \"quantity\": 5\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8899/api/v1/carts/{{cartId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8899",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"{{cartId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Line Item Quantity",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"updateLineItemQuantity\",\r\n    \"lineItems\": [\r\n        {\r\n            \"lineItemId\": \"16102-212398419920\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8899/api/v1/carts/{{cartId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8899",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"{{cartId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Remove Line Item",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"updateLineItemQuantity\",\r\n    \"lineItems\": [\r\n        {\r\n            \"lineItemId\": \"16102-212398419920\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8899/api/v1/carts/{{cartId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8899",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"{{cartId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Cart",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"action\": \"createCart\",\r\n    \"lineItems\": [\r\n        {\r\n            \"skuCode\": \"16527-12\",\r\n            \"quantity\": 2\r\n        },{\r\n        \r\n            \"quantity\": 2\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8899/api/v1/carts/{{cartId}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8899",
+					"path": [
+						"api",
+						"v1",
+						"carts",
+						"{{cartId}}"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
